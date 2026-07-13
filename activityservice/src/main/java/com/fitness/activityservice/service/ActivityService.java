@@ -14,9 +14,9 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ActivityService {
 
     private final ActivityRepository activityRepository;
@@ -40,7 +40,7 @@ public class ActivityService {
 
         Activity savedActivity = activityRepository.save(activity);
 
-        // Publish to RabbitMq for AI Processing
+        // Publish to Rabbit Mq for AI Processing
         try {
             rabbitTemplate.convertAndSend(exchange, routingKey, savedActivity);
         } catch (Exception e) {
